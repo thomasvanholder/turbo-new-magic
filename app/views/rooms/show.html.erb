@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<!-- establish a web socket connection -->
+<%= turbo_stream_from @room %>
+
 <%= turbo_frame_tag "room" do %>
-  <p>
-    <strong>Name:</strong>
-    <%= @room.name %>
-  </p>
+  <%= render @room %>
 
   <p>
   <%= link_to 'Edit', edit_room_path(@room) %> |

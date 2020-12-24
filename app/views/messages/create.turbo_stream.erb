@@ -1,2 +1,5 @@
 <!-- Template invokes append action with the dom id of the target container -->
-<%= turbo_stream.append "messages", @message %>
+<%#= turbo_stream.append "messages", @message %>
+
+<!-- To avoid double rending of submitted form, let action cable render submitted data -->
+<%# return handled by cable %>
