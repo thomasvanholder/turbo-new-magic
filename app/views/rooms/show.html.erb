@@ -1,9 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @room.name %>
-</p>
+<%= turbo_frame_tag "room" do %>
+  <p>
+    <strong>Name:</strong>
+    <%= @room.name %>
+  </p>
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+  <p>
+  <%= link_to 'Edit', edit_room_path(@room) %> |
+  <!-- Use top to break out of the frame -->
+  <%= link_to 'Back', rooms_path, "data-turbo-frame": "_top" %>
+  </p>
+<% end %>
+
+<div id="messages">
+  <%= render @room.messages %>
+</div>
+
+<%= link_to "New Message", new_room_message_path(@room)  %>
+<!-- This frame will be lazy oaded right after the page displays -->
+<%= turbo_frame_tag "new_message", src: new_room_message_path(@room), target: "_top " %>
